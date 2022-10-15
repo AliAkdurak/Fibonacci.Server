@@ -1,0 +1,16 @@
+//
+// Created by ali on 15.10.2022.
+//
+
+#ifndef FIBONACCI_SERVER_IFIBONACCIENGINEMONITOR_HPP
+#define FIBONACCI_SERVER_IFIBONACCIENGINEMONITOR_HPP
+
+namespace Fibonacci::Monitor {
+
+class IFibonacciEngineMonitor {
+
+};
+
+}
+
+#endif //FIBONACCI_SERVER_IFIBONACCIENGINEMONITOR_HPP

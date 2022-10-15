@@ -11,9 +11,9 @@
     - Definitely multi-thread
     - Thinking about a master monitor to see which process is doing calculation what F<sub>n</sub> so that we don't do double calculations
     - Must have some synchronised cache to see what values were calculated before.
-    - Get the cache system injected so that we can use different ones? Could it be seperated.
+    - Get the cache system injected so that we can use different ones? Could it be seperated?
   - Monitoring performance
-    - Should have performance metrics counted. I don't know a C++ library for that will start with simple stopwatch. Checkout libraries if time permits.
+    - Should have performance metrics counted. I don't know a C++ library for that. Will start with simple stopwatch. Checkout libraries if time permits.
     - Logging visibility ? 
   - Fantasies
     - Make it microservice!

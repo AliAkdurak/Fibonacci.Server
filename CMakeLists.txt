@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(Fibonacci_Server)
+project(Fibonacci_Service)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -15,8 +15,19 @@ FetchContent_Declare(
 set(FETCHCONTENT_QUIET OFF)
 FetchContent_MakeAvailable(gRPC)
 
-add_executable(Fibonacci_Server main.cpp
-			   service/FibonacciServiceAbstractFactory.cpp
-			   service/FibonacciServiceAbstractFactory.hpp)
+add_executable(Fibonacci_Service main.cpp)
 
-target_link_libraries(Fibonacci_Server grpc++)
+add_subdirectory(service)
+add_subdirectory(engine)
+add_subdirectory(monitor)
+add_subdirectory(server)
+
+target_link_libraries(Fibonacci_Service grpc++)
+target_link_libraries(Fibonacci_Service fibonacci.service)
+target_link_libraries(Fibonacci_Service fibonacci.service.concrete)
+target_link_libraries(Fibonacci_Service fibonacci.engine)
+target_link_libraries(Fibonacci_Service fibonacci.engine.concrete)
+target_link_libraries(Fibonacci_Service fibonacci.monitor)
+target_link_libraries(Fibonacci_Service fibonacci.monitor.concrete)
+target_link_libraries(Fibonacci_Service fibonacci.server)
+target_link_libraries(Fibonacci_Service fibonacci.server.concrete)
