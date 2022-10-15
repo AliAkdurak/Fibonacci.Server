@@ -16,6 +16,7 @@ int main() {
 
 	std::cout << "Starting fibonacci service" << std::endl;
 
+	//Executor/object owner and the builder can be seperated for better OOD but for now it will suffice.
 	serviceBuilder->ExecuteServiceStack();
 
 	return 0;

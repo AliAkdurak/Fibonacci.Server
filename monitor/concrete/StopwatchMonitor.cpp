@@ -4,7 +4,6 @@
 
 #include "StopwatchMonitor.hpp"
 
-namespace Fibonacci {
-namespace Monitor {
-} // Fibonacci
+namespace Fibonacci::Monitor {
+
 } // Monitor

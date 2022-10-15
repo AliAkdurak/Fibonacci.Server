@@ -13,11 +13,11 @@ IFibonacciServer *SimpleFibonacciService::BuildFibonacciServer() {
 }
 
 IFibonacciEngine *SimpleFibonacciService::BuildFibonacciEngine() {
-	return nullptr;
+	return new Fibonacci::Engine::ThreadPoolFibonacciEngine();
 }
 
 IFibonacciEngineMonitor *SimpleFibonacciService::BuildFibonacciEngineMonitor() {
-	return nullptr;
+	return new Fibonacci::Monitor::StopwatchMonitor();
 }
 
 }

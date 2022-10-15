@@ -5,14 +5,14 @@
 #ifndef FIBONACCI_SERVER_STOPWATCHMONITOR_HPP
 #define FIBONACCI_SERVER_STOPWATCHMONITOR_HPP
 
-namespace Fibonacci {
-namespace Monitor {
+#include "../IFibonacciEngineMonitor.hpp"
 
-class StopwatchMonitor {
+namespace Fibonacci::Monitor {
+
+class StopwatchMonitor : public IFibonacciEngineMonitor {
 
 };
 
-} // Fibonacci
 } // Monitor
 
 #endif //FIBONACCI_SERVER_STOPWATCHMONITOR_HPP
