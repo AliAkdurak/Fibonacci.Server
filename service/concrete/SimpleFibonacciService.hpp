@@ -7,7 +7,7 @@
 
 #include "../AbstractFibonacciServiceBuilder.hpp"
 
-#include "../../server/concrete/gRpcServer.hpp"
+#include "../../server/gRPC/gRpcServer.hpp"
 #include "../../engine/concrete/ThreadPoolFibonacciEngine.hpp"
 #include "../../monitor/concrete/StopwatchMonitor.hpp"
 

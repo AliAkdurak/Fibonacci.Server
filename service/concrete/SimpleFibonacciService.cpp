@@ -9,7 +9,7 @@ namespace Fibonacci::Service {
 SimpleFibonacciService::SimpleFibonacciService() = default;
 
 IFibonacciServer *SimpleFibonacciService::BuildFibonacciServer() {
-	return new Fibonacci::Server::gRPCServer();
+	return new Fibonacci::Server::gRPC::gRPCServer();
 }
 
 IFibonacciEngine *SimpleFibonacciService::BuildFibonacciEngine() {

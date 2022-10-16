@@ -7,7 +7,7 @@
 
 #include "../IFibonacciServer.hpp"
 
-namespace Fibonacci::Server {
+namespace Fibonacci::Server::gRPC {
 
 class gRPCServer : public IFibonacciServer {
 public:

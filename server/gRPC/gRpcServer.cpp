@@ -4,7 +4,7 @@
 
 #include "gRpcServer.hpp"
 
-namespace Fibonacci::Server {
+namespace Fibonacci::Server::gRPC {
 
 void gRPCServer::StartServing() {
 
