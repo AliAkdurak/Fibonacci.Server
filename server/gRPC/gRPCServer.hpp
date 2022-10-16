@@ -14,9 +14,10 @@ namespace Fibonacci::Server::gRPC {
 
 class gRPCServer final : public IFibonacciServer, public FibonacciCalculator::Service {
 public:
+	///Never returns
 	void StartServing() override;
 	Status Calculate(ServerContext *context, const SimpleFibonacciQuery *request, SimpleFibonacciReply *response) override;
-
+	Status CalculateReturnJsonString(::grpc::ServerContext *context, const ::SimpleFibonacciQuery *request, ::JsonFibonacciReply *response) override;
 };
 
 } // Fibonacci::Server

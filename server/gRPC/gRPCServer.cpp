@@ -15,8 +15,11 @@ void gRPCServer::StartServing() {
 }
 
 Status gRPCServer::Calculate(ServerContext *context, const SimpleFibonacciQuery *request, SimpleFibonacciReply *response) {
-
 	return Service::Calculate(context, request, response);
+}
+
+Status gRPCServer::CalculateReturnJsonString(::grpc::ServerContext *context, const ::SimpleFibonacciQuery *request, ::JsonFibonacciReply *response) {
+	return Service::CalculateReturnJsonString(context, request, response);
 }
 
 } // Fibonacci::Server

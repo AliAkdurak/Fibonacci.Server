@@ -7,7 +7,6 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(gRPC)
 
-
 # They didn't docment this well but their examples for fetch content also requires some pre setup.
 # Source https://github.com/grpc/grpc/blob/master/examples/cpp/cmake/common.cmake
 # Since FetchContent uses add_subdirectory under the hood, we can use

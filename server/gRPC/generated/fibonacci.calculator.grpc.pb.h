@@ -42,12 +42,21 @@ class FibonacciCalculator final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SimpleFibonacciReply>> PrepareAsyncCalculate(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SimpleFibonacciReply>>(PrepareAsyncCalculateRaw(context, request, cq));
     }
+    virtual ::grpc::Status CalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::JsonFibonacciReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::JsonFibonacciReply>> AsyncCalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::JsonFibonacciReply>>(AsyncCalculateReturnJsonStringRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::JsonFibonacciReply>> PrepareAsyncCalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::JsonFibonacciReply>>(PrepareAsyncCalculateReturnJsonStringRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
       // Calculate a given F(n)
       virtual void Calculate(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::SimpleFibonacciReply* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Calculate(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::SimpleFibonacciReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::JsonFibonacciReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::JsonFibonacciReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -55,6 +64,8 @@ class FibonacciCalculator final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::SimpleFibonacciReply>* AsyncCalculateRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::SimpleFibonacciReply>* PrepareAsyncCalculateRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::JsonFibonacciReply>* AsyncCalculateReturnJsonStringRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::JsonFibonacciReply>* PrepareAsyncCalculateReturnJsonStringRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -66,11 +77,20 @@ class FibonacciCalculator final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SimpleFibonacciReply>> PrepareAsyncCalculate(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SimpleFibonacciReply>>(PrepareAsyncCalculateRaw(context, request, cq));
     }
+    ::grpc::Status CalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::JsonFibonacciReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::JsonFibonacciReply>> AsyncCalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::JsonFibonacciReply>>(AsyncCalculateReturnJsonStringRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::JsonFibonacciReply>> PrepareAsyncCalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::JsonFibonacciReply>>(PrepareAsyncCalculateReturnJsonStringRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
       void Calculate(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::SimpleFibonacciReply* response, std::function<void(::grpc::Status)>) override;
       void Calculate(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::SimpleFibonacciReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::JsonFibonacciReply* response, std::function<void(::grpc::Status)>) override;
+      void CalculateReturnJsonString(::grpc::ClientContext* context, const ::SimpleFibonacciQuery* request, ::JsonFibonacciReply* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -84,7 +104,10 @@ class FibonacciCalculator final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::SimpleFibonacciReply>* AsyncCalculateRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::SimpleFibonacciReply>* PrepareAsyncCalculateRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::JsonFibonacciReply>* AsyncCalculateReturnJsonStringRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::JsonFibonacciReply>* PrepareAsyncCalculateReturnJsonStringRaw(::grpc::ClientContext* context, const ::SimpleFibonacciQuery& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Calculate_;
+    const ::grpc::internal::RpcMethod rpcmethod_CalculateReturnJsonString_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -94,6 +117,7 @@ class FibonacciCalculator final {
     virtual ~Service();
     // Calculate a given F(n)
     virtual ::grpc::Status Calculate(::grpc::ServerContext* context, const ::SimpleFibonacciQuery* request, ::SimpleFibonacciReply* response);
+    virtual ::grpc::Status CalculateReturnJsonString(::grpc::ServerContext* context, const ::SimpleFibonacciQuery* request, ::JsonFibonacciReply* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Calculate : public BaseClass {
@@ -115,7 +139,27 @@ class FibonacciCalculator final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Calculate<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_CalculateReturnJsonString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CalculateReturnJsonString() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_CalculateReturnJsonString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CalculateReturnJsonString(::grpc::ServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::JsonFibonacciReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCalculateReturnJsonString(::grpc::ServerContext* context, ::SimpleFibonacciQuery* request, ::grpc::ServerAsyncResponseWriter< ::JsonFibonacciReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Calculate<WithAsyncMethod_CalculateReturnJsonString<Service > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Calculate : public BaseClass {
    private:
@@ -143,7 +187,34 @@ class FibonacciCalculator final {
     virtual ::grpc::ServerUnaryReactor* Calculate(
       ::grpc::CallbackServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::SimpleFibonacciReply* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Calculate<Service > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_CalculateReturnJsonString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CalculateReturnJsonString() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::SimpleFibonacciQuery, ::JsonFibonacciReply>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::SimpleFibonacciQuery* request, ::JsonFibonacciReply* response) { return this->CalculateReturnJsonString(context, request, response); }));}
+    void SetMessageAllocatorFor_CalculateReturnJsonString(
+        ::grpc::MessageAllocator< ::SimpleFibonacciQuery, ::JsonFibonacciReply>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::SimpleFibonacciQuery, ::JsonFibonacciReply>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CalculateReturnJsonString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CalculateReturnJsonString(::grpc::ServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::JsonFibonacciReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CalculateReturnJsonString(
+      ::grpc::CallbackServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::JsonFibonacciReply* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Calculate<WithCallbackMethod_CalculateReturnJsonString<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Calculate : public BaseClass {
@@ -158,6 +229,23 @@ class FibonacciCalculator final {
     }
     // disable synchronous version of this method
     ::grpc::Status Calculate(::grpc::ServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::SimpleFibonacciReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CalculateReturnJsonString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CalculateReturnJsonString() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_CalculateReturnJsonString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CalculateReturnJsonString(::grpc::ServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::JsonFibonacciReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -183,6 +271,26 @@ class FibonacciCalculator final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_CalculateReturnJsonString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CalculateReturnJsonString() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_CalculateReturnJsonString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CalculateReturnJsonString(::grpc::ServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::JsonFibonacciReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCalculateReturnJsonString(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Calculate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -202,6 +310,28 @@ class FibonacciCalculator final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Calculate(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_CalculateReturnJsonString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CalculateReturnJsonString() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CalculateReturnJsonString(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CalculateReturnJsonString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CalculateReturnJsonString(::grpc::ServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::JsonFibonacciReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CalculateReturnJsonString(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -231,9 +361,36 @@ class FibonacciCalculator final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedCalculate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::SimpleFibonacciQuery,::SimpleFibonacciReply>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Calculate<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CalculateReturnJsonString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CalculateReturnJsonString() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::SimpleFibonacciQuery, ::JsonFibonacciReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::SimpleFibonacciQuery, ::JsonFibonacciReply>* streamer) {
+                       return this->StreamedCalculateReturnJsonString(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CalculateReturnJsonString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CalculateReturnJsonString(::grpc::ServerContext* /*context*/, const ::SimpleFibonacciQuery* /*request*/, ::JsonFibonacciReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCalculateReturnJsonString(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::SimpleFibonacciQuery,::JsonFibonacciReply>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Calculate<WithStreamedUnaryMethod_CalculateReturnJsonString<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Calculate<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Calculate<WithStreamedUnaryMethod_CalculateReturnJsonString<Service > > StreamedService;
 };
 
 

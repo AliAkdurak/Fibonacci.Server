@@ -20,9 +20,9 @@ public:
 	SimpleFibonacciService() = default;
 
 protected:
-	IFibonacciServer *BuildFibonacciServer() override;
-	IFibonacciEngine *BuildFibonacciEngine() override;
+	vector<IFibonacciServer *> *BuildFibonacciServers() override;
 	IFibonacciEngineMonitor *BuildFibonacciEngineMonitor() override;
+	IFibonacciEngine *BuildFibonacciEngine() override;
 };
 
 }//Fibonacci::Service

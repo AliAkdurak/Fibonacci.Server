@@ -1,7 +1,7 @@
 # Fibonacci Server
 
    This is a simple playground project for a job interview coding challenge. I am not adding the actual coding challenge because it might have a negative effect. This project is gonna be private after interview.
-  
+
 ## Considerations
 
 - 3 Domains 
@@ -17,6 +17,11 @@
     - Logging visibility ? 
   - Fantasies
     - Make it microservice!
+    - 
+## Stretch Goals
+- Use as many of the libraries you can from the interview
+  - [x] boost::asio 
+  - [ ] Folley 
  
 ## Rationale for some library choices:
 

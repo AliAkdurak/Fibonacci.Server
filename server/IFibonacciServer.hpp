@@ -5,6 +5,8 @@
 #ifndef FIBONACCI_SERVER_IFIBONACCISERVER_HPP
 #define FIBONACCI_SERVER_IFIBONACCISERVER_HPP
 
+#include "../engine/IFibonacciEngine.hpp"
+
 namespace Fibonacci::Server {
 
 class IFibonacciServer {
@@ -12,6 +14,7 @@ class IFibonacciServer {
 public:
 	virtual void StartServing() = 0;
 
+	virtual void setEngine(Fibonacci::Engine::IFibonacciEngine *pEngine) = 0;
 };
 
 } // Server

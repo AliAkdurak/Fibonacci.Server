@@ -8,16 +8,20 @@ using namespace Fibonacci::Server::gRPC;
 
 namespace Fibonacci::Service {
 
-IFibonacciServer *SimpleFibonacciService::BuildFibonacciServer() {
-	return new gRPCServer();
-}
-
 IFibonacciEngine *SimpleFibonacciService::BuildFibonacciEngine() {
 	return new Fibonacci::Engine::ThreadPoolFibonacciEngine();
 }
 
+vector<IFibonacciServer *> *SimpleFibonacciService::BuildFibonacciServers() {
+	auto result = new vector<IFibonacciServer *>();
+
+	return result;
+}
+
 IFibonacciEngineMonitor *SimpleFibonacciService::BuildFibonacciEngineMonitor() {
-	return new Fibonacci::Monitor::StopwatchMonitor();
+	auto result = new StopwatchMonitor();
+
+	return result;
 }
 
 }

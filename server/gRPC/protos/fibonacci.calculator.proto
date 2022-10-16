@@ -4,6 +4,7 @@ syntax = "proto3";
 service FibonacciCalculator {
   //Calculate a given F(n)
   rpc Calculate(SimpleFibonacciQuery) returns (SimpleFibonacciReply) {}
+  rpc CalculateReturnJsonString(SimpleFibonacciQuery) returns (JsonFibonacciReply) {}
 }
 
 message SimpleFibonacciQuery{
@@ -12,4 +13,8 @@ message SimpleFibonacciQuery{
 
 message SimpleFibonacciReply{
   int64 fibonacciResult = 1;
+}
+
+message JsonFibonacciReply{
+  string fibonacciJsonResult = 1;
 }

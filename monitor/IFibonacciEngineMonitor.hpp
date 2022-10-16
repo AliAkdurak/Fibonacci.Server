@@ -5,9 +5,11 @@
 #ifndef FIBONACCI_SERVER_IFIBONACCIENGINEMONITOR_HPP
 #define FIBONACCI_SERVER_IFIBONACCIENGINEMONITOR_HPP
 
+#include "IFibonacciEngineListener.hpp"
+
 namespace Fibonacci::Monitor {
 
-class IFibonacciEngineMonitor {
+class IFibonacciEngineMonitor : public IFibonacciEngineListener {
 
 };
 

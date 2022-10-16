@@ -44,6 +44,9 @@ struct TableStruct_fibonacci_2ecalculator_2eproto {
   static const uint32_t offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_fibonacci_2ecalculator_2eproto;
+class JsonFibonacciReply;
+struct JsonFibonacciReplyDefaultTypeInternal;
+extern JsonFibonacciReplyDefaultTypeInternal _JsonFibonacciReply_default_instance_;
 class SimpleFibonacciQuery;
 struct SimpleFibonacciQueryDefaultTypeInternal;
 extern SimpleFibonacciQueryDefaultTypeInternal _SimpleFibonacciQuery_default_instance_;
@@ -51,6 +54,7 @@ class SimpleFibonacciReply;
 struct SimpleFibonacciReplyDefaultTypeInternal;
 extern SimpleFibonacciReplyDefaultTypeInternal _SimpleFibonacciReply_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
+template<> ::JsonFibonacciReply* Arena::CreateMaybeMessage<::JsonFibonacciReply>(Arena*);
 template<> ::SimpleFibonacciQuery* Arena::CreateMaybeMessage<::SimpleFibonacciQuery>(Arena*);
 template<> ::SimpleFibonacciReply* Arena::CreateMaybeMessage<::SimpleFibonacciReply>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -351,6 +355,159 @@ class SimpleFibonacciReply final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_fibonacci_2ecalculator_2eproto;
 };
+// -------------------------------------------------------------------
+
+class JsonFibonacciReply final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:JsonFibonacciReply) */ {
+ public:
+  inline JsonFibonacciReply() : JsonFibonacciReply(nullptr) {}
+  ~JsonFibonacciReply() override;
+  explicit PROTOBUF_CONSTEXPR JsonFibonacciReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  JsonFibonacciReply(const JsonFibonacciReply& from);
+  JsonFibonacciReply(JsonFibonacciReply&& from) noexcept
+    : JsonFibonacciReply() {
+    *this = ::std::move(from);
+  }
+
+  inline JsonFibonacciReply& operator=(const JsonFibonacciReply& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JsonFibonacciReply& operator=(JsonFibonacciReply&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JsonFibonacciReply& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JsonFibonacciReply* internal_default_instance() {
+    return reinterpret_cast<const JsonFibonacciReply*>(
+               &_JsonFibonacciReply_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(JsonFibonacciReply& a, JsonFibonacciReply& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JsonFibonacciReply* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JsonFibonacciReply* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JsonFibonacciReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<JsonFibonacciReply>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const JsonFibonacciReply& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const JsonFibonacciReply& from) {
+    JsonFibonacciReply::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JsonFibonacciReply* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "JsonFibonacciReply";
+  }
+  protected:
+  explicit JsonFibonacciReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFibonacciJsonResultFieldNumber = 1,
+  };
+  // string fibonacciJsonResult = 1;
+  void clear_fibonaccijsonresult();
+  const std::string& fibonaccijsonresult() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_fibonaccijsonresult(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_fibonaccijsonresult();
+  PROTOBUF_NODISCARD std::string* release_fibonaccijsonresult();
+  void set_allocated_fibonaccijsonresult(std::string* fibonaccijsonresult);
+  private:
+  const std::string& _internal_fibonaccijsonresult() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fibonaccijsonresult(const std::string& value);
+  std::string* _internal_mutable_fibonaccijsonresult();
+  public:
+
+  // @@protoc_insertion_point(class_scope:JsonFibonacciReply)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr fibonaccijsonresult_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_fibonacci_2ecalculator_2eproto;
+};
 // ===================================================================
 
 
@@ -406,9 +563,65 @@ inline void SimpleFibonacciReply::set_fibonacciresult(int64_t value) {
   // @@protoc_insertion_point(field_set:SimpleFibonacciReply.fibonacciResult)
 }
 
+// -------------------------------------------------------------------
+
+// JsonFibonacciReply
+
+// string fibonacciJsonResult = 1;
+inline void JsonFibonacciReply::clear_fibonaccijsonresult() {
+  _impl_.fibonaccijsonresult_.ClearToEmpty();
+}
+inline const std::string& JsonFibonacciReply::fibonaccijsonresult() const {
+  // @@protoc_insertion_point(field_get:JsonFibonacciReply.fibonacciJsonResult)
+  return _internal_fibonaccijsonresult();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void JsonFibonacciReply::set_fibonaccijsonresult(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.fibonaccijsonresult_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:JsonFibonacciReply.fibonacciJsonResult)
+}
+inline std::string* JsonFibonacciReply::mutable_fibonaccijsonresult() {
+  std::string* _s = _internal_mutable_fibonaccijsonresult();
+  // @@protoc_insertion_point(field_mutable:JsonFibonacciReply.fibonacciJsonResult)
+  return _s;
+}
+inline const std::string& JsonFibonacciReply::_internal_fibonaccijsonresult() const {
+  return _impl_.fibonaccijsonresult_.Get();
+}
+inline void JsonFibonacciReply::_internal_set_fibonaccijsonresult(const std::string& value) {
+  
+  _impl_.fibonaccijsonresult_.Set(value, GetArenaForAllocation());
+}
+inline std::string* JsonFibonacciReply::_internal_mutable_fibonaccijsonresult() {
+  
+  return _impl_.fibonaccijsonresult_.Mutable(GetArenaForAllocation());
+}
+inline std::string* JsonFibonacciReply::release_fibonaccijsonresult() {
+  // @@protoc_insertion_point(field_release:JsonFibonacciReply.fibonacciJsonResult)
+  return _impl_.fibonaccijsonresult_.Release();
+}
+inline void JsonFibonacciReply::set_allocated_fibonaccijsonresult(std::string* fibonaccijsonresult) {
+  if (fibonaccijsonresult != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.fibonaccijsonresult_.SetAllocated(fibonaccijsonresult, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.fibonaccijsonresult_.IsDefault()) {
+    _impl_.fibonaccijsonresult_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:JsonFibonacciReply.fibonacciJsonResult)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

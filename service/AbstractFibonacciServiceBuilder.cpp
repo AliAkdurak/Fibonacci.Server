@@ -7,28 +7,23 @@
 namespace Fibonacci::Service {
 
 
-void AbstractFibonacciServiceBuilder::BuildFibonacciService() {
+AbstractFibonacciServiceBuilder::AbstractFibonacciServiceBuilder() = default;
+
+void AbstractFibonacciServiceBuilder::BuildServices() {
 	fiboEngine = BuildFibonacciEngine();
-	fiboServer = BuildFibonacciServer();
-	fiboEngineMonitor = BuildFibonacciEngineMonitor();
+	fiboServers = BuildFibonacciServers();
 }
 
-void AbstractFibonacciServiceBuilder::ExecuteServiceStack() {
-	
-	fiboServer->StartServing();
-}
-
-IFibonacciServer *AbstractFibonacciServiceBuilder::getFiboServer() {
-	return fiboServer;
-}
-
-IFibonacciEngine *AbstractFibonacciServiceBuilder::getFiboEngine() {
+IFibonacciEngine *AbstractFibonacciServiceBuilder::getFiboEngine() const {
 	return fiboEngine;
 }
 
-IFibonacciEngineMonitor *AbstractFibonacciServiceBuilder::getFiboEngineMonitor() {
-	return fiboEngineMonitor;
+vector<IFibonacciServer *> *AbstractFibonacciServiceBuilder::getFiboServers() const {
+	return fiboServers;
 }
 
+IFibonacciEngineMonitor *AbstractFibonacciServiceBuilder::getFiboEngineMonitor() const {
+	return fiboEngineMonitor;
+}
 
 } // Server
