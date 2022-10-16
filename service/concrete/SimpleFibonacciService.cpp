@@ -4,12 +4,12 @@
 
 #include "SimpleFibonacciService.hpp"
 
+using namespace Fibonacci::Server::gRPC;
+
 namespace Fibonacci::Service {
 
-SimpleFibonacciService::SimpleFibonacciService() = default;
-
 IFibonacciServer *SimpleFibonacciService::BuildFibonacciServer() {
-	return new Fibonacci::Server::gRPC::gRPCServer();
+	return new gRPCServer();
 }
 
 IFibonacciEngine *SimpleFibonacciService::BuildFibonacciEngine() {

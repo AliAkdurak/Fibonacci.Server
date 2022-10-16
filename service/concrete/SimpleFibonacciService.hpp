@@ -7,7 +7,7 @@
 
 #include "../AbstractFibonacciServiceBuilder.hpp"
 
-#include "../../server/gRPC/gRpcServer.hpp"
+#include "../../server/gRPC/gRPCServer.hpp"
 #include "../../engine/concrete/ThreadPoolFibonacciEngine.hpp"
 #include "../../monitor/concrete/StopwatchMonitor.hpp"
 
@@ -17,7 +17,7 @@ namespace Fibonacci::Service {
 
 class SimpleFibonacciService : public AbstractFibonacciServiceBuilder {
 public:
-	SimpleFibonacciService();
+	SimpleFibonacciService() = default;
 
 protected:
 	IFibonacciServer *BuildFibonacciServer() override;

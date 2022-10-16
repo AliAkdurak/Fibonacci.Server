@@ -6,6 +6,7 @@
 #define FIBONACCI_SERVER_ABSTRACTFIBONACCISERVICEBUILDER_HPP
 
 #include <memory>
+#include "boost/thread.hpp"
 
 #include "../server/IFibonacciServer.hpp"
 #include "../engine/IFibonacciEngine.hpp"

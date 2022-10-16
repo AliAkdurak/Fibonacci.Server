@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+//Fibonacci calculation service
+service FibonacciCalculator {
+  //Calculate a given F(n)
+  rpc Calculate(SimpleFibonacciQuery) returns (SimpleFibonacciReply) {}
+}
+
+message SimpleFibonacciQuery{
+  int32 fibonacciQuery = 1;
+}
+
+message SimpleFibonacciReply{
+  int64 fibonacciResult = 1;
+}

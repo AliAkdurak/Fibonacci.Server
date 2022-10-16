@@ -6,12 +6,17 @@
 #define FIBONACCI_SERVER_GRPCSERVER_HPP
 
 #include "../IFibonacciServer.hpp"
+#include "generated/fibonacci.calculator.grpc.pb.h"
+
+using namespace grpc;
 
 namespace Fibonacci::Server::gRPC {
 
-class gRPCServer : public IFibonacciServer {
+class gRPCServer final : public IFibonacciServer, public FibonacciCalculator::Service {
 public:
 	void StartServing() override;
+	Status Calculate(ServerContext *context, const SimpleFibonacciQuery *request, SimpleFibonacciReply *response) override;
+
 };
 
 } // Fibonacci::Server

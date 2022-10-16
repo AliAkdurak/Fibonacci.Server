@@ -14,7 +14,8 @@ void AbstractFibonacciServiceBuilder::BuildFibonacciService() {
 }
 
 void AbstractFibonacciServiceBuilder::ExecuteServiceStack() {
-
+	
+	fiboServer->StartServing();
 }
 
 IFibonacciServer *AbstractFibonacciServiceBuilder::getFiboServer() {
