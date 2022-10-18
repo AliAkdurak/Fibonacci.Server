@@ -8,6 +8,7 @@
 #include "../AbstractFibonacciServiceBuilder.hpp"
 
 #include "../../server/gRPC/gRPCServer.hpp"
+#include "../../engine/concrete/LinearFibonacciEngine.hpp"
 #include "../../engine/concrete/ThreadPoolFibonacciEngine.hpp"
 #include "../../monitor/concrete/StopwatchMonitor.hpp"
 

@@ -17,13 +17,13 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Boost)
 
-#Main Fibonacci service structure
-add_executable(Fibonacci_Service FibonacciServiceApp.cpp)
-
 add_subdirectory(engine)
 add_subdirectory(monitor)
 add_subdirectory(server)
 add_subdirectory(service)
+
+#Main Fibonacci service structure
+add_executable(Fibonacci_Service FibonacciServiceApp.cpp)
 
 target_link_libraries(Fibonacci_Service fibonacci.engine)
 target_link_libraries(Fibonacci_Service fibonacci.engine.concrete)
@@ -40,4 +40,6 @@ target_link_libraries(Fibonacci_Service boost_thread)
 target_link_libraries(Fibonacci_Service boost_asio)
 
 #Fibonacci GRPC client for testing
-add_executable(Fibonacci_GRPC_Client FibonacciGRPCClient.cpp)
+add_executable(Fibonacci_GRPC_Client client/FibonacciGRPCClient.cpp)
+
+target_link_libraries(Fibonacci_GRPC_Client fibonacci.server.grpc)

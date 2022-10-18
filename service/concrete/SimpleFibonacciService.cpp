@@ -4,16 +4,19 @@
 
 #include "SimpleFibonacciService.hpp"
 
+using namespace Fibonacci::Engine;
 using namespace Fibonacci::Server::gRPC;
 
 namespace Fibonacci::Service {
 
 IFibonacciEngine *SimpleFibonacciService::BuildFibonacciEngine() {
-	return new Fibonacci::Engine::ThreadPoolFibonacciEngine();
+	return new LinearFibonacciEngine();
 }
 
 vector<IFibonacciServer *> *SimpleFibonacciService::BuildFibonacciServers() {
 	auto result = new vector<IFibonacciServer *>();
+
+	result->push_back(new gRPCServer());
 
 	return result;
 }

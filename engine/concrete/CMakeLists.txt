@@ -1,2 +1,2 @@
 add_library(fibonacci.engine.concrete OBJECT
-			ThreadPoolFibonacciEngine.cpp)
+			ThreadPoolFibonacciEngine.cpp LinearFibonacciEngine.cpp LinearFibonacciEngine.hpp)

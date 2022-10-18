@@ -7,6 +7,8 @@
 
 #include "../engine/IFibonacciEngine.hpp"
 
+using namespace Fibonacci::Engine;
+
 namespace Fibonacci::Server {
 
 class IFibonacciServer {
@@ -14,7 +16,13 @@ class IFibonacciServer {
 public:
 	virtual void StartServing() = 0;
 
-	virtual void setEngine(Fibonacci::Engine::IFibonacciEngine *pEngine) = 0;
+	virtual void setEngine(IFibonacciEngine *pEngine) {
+		fiboEngine = pEngine;
+	};
+
+protected:
+	//Could be shared pointer but no reason because of lifetime of the servise equals the engine for now.
+	IFibonacciEngine *fiboEngine = nullptr;
 };
 
 } // Server

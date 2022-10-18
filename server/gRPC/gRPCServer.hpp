@@ -5,6 +5,10 @@
 #ifndef FIBONACCI_SERVER_GRPCSERVER_HPP
 #define FIBONACCI_SERVER_GRPCSERVER_HPP
 
+#include <grpcpp/ext/proto_server_reflection_plugin.h>
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/health_check_service_interface.h>
+
 #include "../IFibonacciServer.hpp"
 #include "generated/fibonacci.calculator.grpc.pb.h"
 
@@ -16,6 +20,8 @@ class gRPCServer final : public IFibonacciServer, public FibonacciCalculator::Se
 public:
 	///Never returns
 	void StartServing() override;
+
+
 	Status Calculate(ServerContext *context, const SimpleFibonacciQuery *request, SimpleFibonacciReply *response) override;
 	Status CalculateReturnJsonString(::grpc::ServerContext *context, const ::SimpleFibonacciQuery *request, ::JsonFibonacciReply *response) override;
 };

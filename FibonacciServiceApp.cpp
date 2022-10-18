@@ -8,11 +8,15 @@ int main() {
 
 	newApp->Start();
 
+	newApp->BlockUntilServiceDown();
+
 	return 0;
 }
 
 FibonacciServiceApp::FibonacciServiceApp(AbstractFibonacciServiceBuilder *serviceBuilder) : serviceBuilder(serviceBuilder),
-																							monitorInterval(30), monitorTimer(asio_service, monitorInterval) {
+																							monitorInterval(30),
+																							monitorTimer(asio_service, monitorInterval),
+																							serverThreadGroup() {
 
 }
 
@@ -31,12 +35,14 @@ void FibonacciServiceApp::Start() {
 	this->RunServices();
 	//PostRun
 	cout << "Monitor services" << endl;
-
-	monitoringLoopThread = new boost::thread(&FibonacciServiceApp::MonitorLoop, this);
 }
 
-void FibonacciServiceApp::BlockUntilServiceDown(){
-	monitoringLoopThread->join();
+void FibonacciServiceApp::BlockUntilServiceDown() {
+	if(monitoringLoopThread == nullptr){
+		cout << "null" << endl;
+	}else{
+		monitoringLoopThread->join();
+	}
 }
 
 void FibonacciServiceApp::BuildServices() {
@@ -55,17 +61,24 @@ void FibonacciServiceApp::SetupServices() {
 		fiboServer->setEngine(fiboEngine);
 	}
 
-	this->fiboEngine->RegisterIFibonacciEngineObserver(fiboEngineMonitor);
+	this->fiboEngine->RegisterIFibonacciEngineListener(fiboEngineMonitor);
 }
 
 void FibonacciServiceApp::RunServices() {
+	engineThread = new boost::thread(&IFibonacciEngine::StartEngine, fiboEngine);
+	monitoringLoopThread = new boost::thread(&FibonacciServiceApp::MonitorLoop, this);
 
+	for (auto fiboServer: *fiboServers) {
+		auto serverThread = new boost::thread(&IFibonacciServer::StartServing, fiboServer);
+		serverThreadGroup.add_thread(serverThread);
+	}
 
 }
 
 void FibonacciServiceApp::MonitorLoop() {
 	cout << "Monitoring thread is up" << endl;
 
+	//TODO This is busy wait its awful make this into asio timer async.
 	while (continueMonitoring.value()) {
 		//Read the other services threads condition?
 		//Read heap usage ?
