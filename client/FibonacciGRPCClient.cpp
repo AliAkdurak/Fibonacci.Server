@@ -1,9 +1,6 @@
 //
 // Created by ali on 16.10.2022.
 //
-#include <iostream>
-#include <memory>
-
 #include "FibonacciGRPCClient.hpp"
 
 using namespace std;
@@ -15,11 +12,11 @@ int main() {
 
 	auto result = client->QueryFibonacciNumber(20);
 
-	cout << "result:" << result;
+	cout << "result: " << result << endl;
 
 	auto resultJson = client->QueryFibonacciNumberJson(30);
 
-	cout << "result json:" << resultJson;
+	cout << "result json: " << resultJson << endl;
 
 	return 0;
 }

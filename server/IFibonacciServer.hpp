@@ -6,17 +6,19 @@
 #define FIBONACCI_SERVER_IFIBONACCISERVER_HPP
 
 #include "../engine/IFibonacciEngine.hpp"
+#include "IFibonacciCalculationQuerySource.hpp"
 
 using namespace Fibonacci::Engine;
 
 namespace Fibonacci::Server {
 
-class IFibonacciServer {
+class IFibonacciServer : public IFibonacciCalculationQuerySource {
 
 public:
 	virtual void StartServing() = 0;
 
 	virtual void setEngine(IFibonacciEngine *pEngine) {
+		this->RegisterIFibonacciEngineListener(pEngine);
 		fiboEngine = pEngine;
 	};
 

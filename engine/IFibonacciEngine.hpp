@@ -7,35 +7,19 @@
 
 #include <vector>
 
-#include "../monitor/IFibonacciEngineListener.hpp"
+
+#include "../server/IFibonacciCalculationQueryListener.hpp"
+#include "IFibonacciEngineMonitoringSource.hpp"
 
 using namespace std;
 using namespace Fibonacci::Monitor;
+using namespace Fibonacci::Server;
 
 namespace Fibonacci::Engine {
 
-class IFibonacciEngine {
-
-protected:
-	vector<IFibonacciEngineListener *> engineListeners;
+class IFibonacciEngine : public IFibonacciCalculationQueryListener, public IFibonacciEngineMonitoringSource {
 
 public:
-	//Normally interfaces shouldn't allow any code but C++ allow multiple inheritance and this is one of the very rare chances this actually lowers code duplicity
-	virtual void RegisterIFibonacciEngineListener(IFibonacciEngineListener *eventListener) {
-		this->engineListeners.push_back(eventListener);
-	}
-
-	virtual void UnregisterIFibonacciEngineListener(IFibonacciEngineListener *eventListener) {
-		using Iter = std::vector<IFibonacciEngineListener *>::iterator;
-		Iter it;
-		for (it = this->engineListeners.begin(); it != this->engineListeners.end(); ++it) {
-			if (*it == eventListener) {
-				this->engineListeners.erase(it);
-				break;
-			}
-		}
-	}
-
 	virtual void StartEngine() = 0;
 };
 

@@ -10,7 +10,8 @@
 namespace Fibonacci::Engine {
 
 class LinearFibonacciEngine : public IFibonacciEngine {
-
+public:
+	int64_t HandleCalculationQuery(int fibonacciNumber) override;
 public:
 	void StartEngine() override;
 

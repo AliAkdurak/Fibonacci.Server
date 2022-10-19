@@ -5,6 +5,8 @@
 #ifndef FIBONACCI_SERVICE_FIBONACCIGRPCCLIENT_HPP
 #define FIBONACCI_SERVICE_FIBONACCIGRPCCLIENT_HPP
 
+#include <iostream>
+#include <memory>
 #include <grpcpp/grpcpp.h>
 
 #include "../server/gRPC/generated/fibonacci.calculator.grpc.pb.h"

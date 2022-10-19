@@ -30,13 +30,26 @@ void gRPCServer::StartServing() {
 Status gRPCServer::Calculate(ServerContext *context, const SimpleFibonacciQuery *request, SimpleFibonacciReply *response) {
 	cout << "Calculate" << endl;
 
-	return Service::Calculate(context, request, response);
+	int64_t result = FireCalculationQueryReceived(request->fibonacciquery());
+
+	cout << "Result:" << result << endl;
+
+	response->set_fibonacciresult(result);
+
+	return Status::OK;
 }
 
 Status gRPCServer::CalculateReturnJsonString(::grpc::ServerContext *context, const ::SimpleFibonacciQuery *request, ::JsonFibonacciReply *response) {
-	cout << "Calculate Json" << endl;
+	cout << "Calculate and return json" << endl;
 
-	return Service::CalculateReturnJsonString(context, request, response);
+	int64_t result = FireCalculationQueryReceived(request->fibonacciquery());
+
+	cout << "Result:" << result << endl;
+
+	response->set_fibonaccijsonresult("Test");
+
+	return Status::OK;
 }
+
 
 } // Fibonacci::Server

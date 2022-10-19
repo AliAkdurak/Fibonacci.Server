@@ -12,6 +12,8 @@
 #include "../IFibonacciServer.hpp"
 #include "generated/fibonacci.calculator.grpc.pb.h"
 
+#include "../IFibonacciCalculationQuerySource.hpp"
+
 using namespace grpc;
 
 namespace Fibonacci::Server::gRPC {
