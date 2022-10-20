@@ -36,6 +36,35 @@ public:
 		}
 	}
 
+	void FireCalculationQueryReceivedEvent() {
+		for(auto engineListener : engineListeners){
+			engineListener->HandleCalculationQueryReceivedEvent();
+		}
+	}
+
+	void FireStartingCalculationEvent() {
+		for(auto engineListener : engineListeners){
+			engineListener->HandleStartingCalculationEvent();
+		}
+	}
+
+	void FireFinishedCalculationEvent() {
+		for(auto engineListener : engineListeners){
+			engineListener->HandleFinishedCalculationEvent();
+		}
+	}
+
+	void FireRecoveredCalculationEvent() {
+		for(auto engineListener : engineListeners){
+			engineListener->HandleRecoveredCalculationEvent();
+		}
+	}
+
+	void FireCalculationQueryCompletedEvent() {
+		for(auto engineListener : engineListeners){
+			engineListener->HandleCalculationQueryCompletedEvent();
+		}
+	}
 };
 
 }

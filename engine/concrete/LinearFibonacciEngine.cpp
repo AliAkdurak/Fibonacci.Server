@@ -3,11 +3,14 @@
 //
 #include "LinearFibonacciEngine.hpp"
 
+using namespace boost::multiprecision;
+
 namespace Fibonacci::Engine {
 
 //Shared pointers should be copied(pass by value) normally for constructor case we can pass by ref for injecting
 LinearFibonacciEngine::LinearFibonacciEngine(const shared_ptr<IFiboQueryHistoryStore> &historyStore,
-											 const shared_ptr<IFiboQueryStatisticsStore> &statisticsStore) : AbstractFibonacciEngine(historyStore, statisticsStore) {
+											 const shared_ptr<IFiboQueryStatisticsStore> &statisticsStore) : AbstractFibonacciEngine(historyStore,
+																																	 statisticsStore) {
 
 }
 
@@ -18,9 +21,9 @@ void LinearFibonacciEngine::StartEngine() {
 
 shared_ptr<CalculationResult> LinearFibonacciEngine::ProcessCalculationQuery(int fibonacciNumber) {
 	//linear time :)
-	int64_t result = 0;
-	int64_t currentAdditive = 1;
-	int64_t prevAdditive = 0;
+	cpp_int result = 0;
+	cpp_int currentAdditive = 1;
+	cpp_int prevAdditive = 0;
 
 	for (int i = 0; i <= fibonacciNumber; i++) {
 		if (i <= 1) {
@@ -32,11 +35,7 @@ shared_ptr<CalculationResult> LinearFibonacciEngine::ProcessCalculationQuery(int
 		}
 	}
 
-	shared_ptr<CalculationResult> calcResult(new CalculationResult());
-	calcResult->setFibonacciResult(result);
-	calcResult->setCount(55);
-
-	return calcResult;
+	return make_shared<CalculationResult>(result);
 }
 
 }

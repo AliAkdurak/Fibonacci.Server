@@ -12,7 +12,7 @@ message SimpleFibonacciQuery{
 }
 
 message SimpleFibonacciReply{
-  int64 fibonacciResult = 1;
+  string fibonacciResult = 1;
 }
 
 message JsonFibonacciReply{

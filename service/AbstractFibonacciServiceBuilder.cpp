@@ -12,6 +12,7 @@ AbstractFibonacciServiceBuilder::AbstractFibonacciServiceBuilder() = default;
 void AbstractFibonacciServiceBuilder::BuildServices() {
 	fiboEngine = BuildFibonacciEngine();
 	fiboServers = BuildFibonacciServers();
+	fiboEngineMonitor = BuildFibonacciEngineMonitor();
 }
 
 AbstractFibonacciEngine *AbstractFibonacciServiceBuilder::getFiboEngine() const {

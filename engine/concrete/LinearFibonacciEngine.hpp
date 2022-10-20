@@ -5,8 +5,10 @@
 #ifndef FIBONACCI_SERVICE_LINEARFIBONACCIENGINE_HPP
 #define FIBONACCI_SERVICE_LINEARFIBONACCIENGINE_HPP
 
-#include <iostream> // For std::cout
-#include <memory> // For std::shared_ptr, std::make_shared
+#include <iostream>
+#include <memory>
+
+#include <boost/multiprecision/cpp_int.hpp>
 
 #include "../AbstractFibonacciEngine.hpp"
 
@@ -21,7 +23,7 @@ public:
 	shared_ptr<CalculationResult> ProcessCalculationQuery(int fibonacciNumber) override;
 public:
 	void StartEngine() override;
-
+	shared_ptr<CalculationResult> test;
 };
 
 }

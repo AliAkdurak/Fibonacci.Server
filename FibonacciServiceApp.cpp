@@ -56,6 +56,7 @@ void FibonacciServiceApp::SetupServices() {
 	//Of course this is a bit of an overkill for this requirements
 	this->fiboEngine = serviceBuilder->getFiboEngine();
 	this->fiboServers = serviceBuilder->getFiboServers();
+	this->fiboEngineMonitor = serviceBuilder->getFiboEngineMonitor();
 
 	for (auto fiboServer: *fiboServers) {
 		fiboServer->setEngine(fiboEngine);

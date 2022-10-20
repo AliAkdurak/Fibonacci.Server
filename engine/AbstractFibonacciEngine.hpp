@@ -6,6 +6,7 @@
 #define FIBONACCI_SERVER_IFIBONACCIENGINE_HPP
 
 #include <vector>
+#include <optional>
 
 #include "../server/IFibonacciCalculationQueryListener.hpp"
 #include "IFibonacciEngineMonitoringSource.hpp"
@@ -33,9 +34,9 @@ protected:
 	shared_ptr<IFiboQueryStatisticsStore> statisticsStore;
 
 protected:
-	virtual void PreProcessCalculationQuery(int number);
+	virtual optional<shared_ptr<CalculationResult>> PreProcessCalculationQuery(int number);
 	virtual shared_ptr<CalculationResult> ProcessCalculationQuery(int fibonacciNumber) = 0;
-	virtual void PostProcessCalculationQuery(int number);
+	virtual void PostProcessCalculationQuery(int number, shared_ptr<CalculationResult> calculationResult);
 
 };
 

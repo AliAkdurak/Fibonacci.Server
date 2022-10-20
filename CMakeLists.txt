@@ -27,7 +27,7 @@ add_executable(Fibonacci_Service FibonacciServiceApp.cpp)
 
 target_link_libraries(Fibonacci_Service fibonacci.engine)
 target_link_libraries(Fibonacci_Service fibonacci.engine.concrete)
-target_link_libraries(Fibonacci_Service fibonacci.engine.store)
+target_link_libraries(Fibonacci_Service fibonacci.engine.store.concrete)
 
 target_link_libraries(Fibonacci_Service fibonacci.monitor)
 target_link_libraries(Fibonacci_Service fibonacci.monitor.concrete)

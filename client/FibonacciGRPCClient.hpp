@@ -24,7 +24,7 @@ public:
 
 	// Assembles the client's payload, sends it and presents the response back
 	// from the server.
-	int64_t QueryFibonacciNumber(int fibonacciNumber);
+	string QueryFibonacciNumber(int fibonacciNumber);
 	string QueryFibonacciNumberJson(int fibonacciNumber);
 
 private:

@@ -12,22 +12,39 @@ AbstractFibonacciEngine::AbstractFibonacciEngine(const shared_ptr<IFiboQueryHist
 
 }
 
-shared_ptr<CalculationResult> AbstractFibonacciEngine::HandleCalculationQuery(int fibonacciNumber) {
+shared_ptr<CalculationResult> AbstractFibonacciEngine::HandleCalculationQuery(int fiboQueryNumber) {
+	FireCalculationQueryReceivedEvent();
 	//Creating a template to control handle process
-	
-	PreProcessCalculationQuery(fibonacciNumber);
-	shared_ptr<CalculationResult> result = ProcessCalculationQuery(fibonacciNumber);
-	PostProcessCalculationQuery(fibonacciNumber);
+	shared_ptr<CalculationResult> calculationResult;
+	//Get it from the store if you can
+	optional<shared_ptr<CalculationResult>> preCalculationHistoryResult = PreProcessCalculationQuery(fiboQueryNumber);
 
-	return result;
+	//Choose the result you want.
+	if (!preCalculationHistoryResult.has_value()) {
+		FireStartingCalculationEvent();
+		calculationResult = ProcessCalculationQuery(fiboQueryNumber);
+		FireFinishedCalculationEvent();
+	} else {
+		FireRecoveredCalculationEvent();
+		calculationResult = preCalculationHistoryResult.value();
+	}
+
+	//Make the necessary call to statistics and history, maybe to monitoring events too.
+	PostProcessCalculationQuery(fiboQueryNumber, calculationResult);
+
+	FireCalculationQueryCompletedEvent();
+	return calculationResult;
 }
 
-void AbstractFibonacciEngine::PreProcessCalculationQuery(int number) {
+optional<shared_ptr<CalculationResult>> AbstractFibonacciEngine::PreProcessCalculationQuery(int fiboQueryNumber) {
+	optional<shared_ptr<CalculationResult>> previousCalcResult = historyStore->QueryPreviousCalculation(fiboQueryNumber);
 
+	return previousCalcResult;
 }
 
-void AbstractFibonacciEngine::PostProcessCalculationQuery(int number) {
-
+void AbstractFibonacciEngine::PostProcessCalculationQuery(int fiboQueryNumber, shared_ptr<CalculationResult> calculationResult) {
+	historyStore->RecordCalculationResult(fiboQueryNumber, calculationResult);
+	statisticsStore->RecordCalculationResult(fiboQueryNumber, calculationResult);
 }
 
 }

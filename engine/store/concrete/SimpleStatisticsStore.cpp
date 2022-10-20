@@ -4,9 +4,12 @@
 
 #include "SimpleStatisticsStore.hpp"
 
-namespace Fibonacci {
-namespace Engine {
-namespace Store {
-} // Fibonacci
-} // Engine
+using namespace Fibonacci::Engine;
+
+namespace Fibonacci::Engine::Store {
+
+void SimpleStatisticsStore::RecordCalculationResult(int fiboQueryNumber, shared_ptr <CalculationResult> calculationResult) {
+
+}
+
 } // Store

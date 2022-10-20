@@ -63,3 +63,4 @@ add_library(fibonacci.server.grpc STATIC
 
 target_link_libraries(fibonacci.server.grpc grpc++)
 target_link_libraries(fibonacci.server.grpc boost_json)
+target_link_libraries(fibonacci.server.grpc fibonacci.engine)

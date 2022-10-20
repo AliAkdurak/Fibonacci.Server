@@ -4,6 +4,36 @@
 
 #include "StopwatchMonitor.hpp"
 
+using namespace boost::timer;
+
 namespace Fibonacci::Monitor {
 
+void StopwatchMonitor::HandleCalculationQueryReceivedEvent() {
+	wholeQueryAutoTimer = new auto_cpu_timer(simpleStopwatchMonitorOutputStream, "%t sec CPU, %w sec real");
+}
+
+void StopwatchMonitor::HandleStartingCalculationEvent() {
+	calculationAutoTimer = new auto_cpu_timer(simpleStopwatchMonitorOutputStream, "Calculation took:%t sec CPU, %w sec real");
+}
+
+void StopwatchMonitor::HandleFinishedCalculationEvent() {
+	simpleStopwatchMonitorOutputStream << "Query calculated:";
+}
+
+void StopwatchMonitor::HandleRecoveredCalculationEvent() {
+	simpleStopwatchMonitorOutputStream << "Query recovered:";
+}
+
+void StopwatchMonitor::HandleCalculationQueryCompletedEvent() {
+	delete wholeQueryAutoTimer;
+	simpleStopwatchMonitorOutputStream << endl;
+	if (calculationAutoTimer != nullptr) {
+		delete calculationAutoTimer;
+		calculationAutoTimer = nullptr;
+	}
+	simpleStopwatchMonitorOutputStream << endl;
+	cout << simpleStopwatchMonitorOutputStream.str();
+	simpleStopwatchMonitorOutputStream.clear();
+	simpleStopwatchMonitorOutputStream.str(string());
+}
 } // Monitor

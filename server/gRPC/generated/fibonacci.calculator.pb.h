@@ -332,13 +332,18 @@ class SimpleFibonacciReply final :
   enum : int {
     kFibonacciResultFieldNumber = 1,
   };
-  // int64 fibonacciResult = 1;
+  // string fibonacciResult = 1;
   void clear_fibonacciresult();
-  int64_t fibonacciresult() const;
-  void set_fibonacciresult(int64_t value);
+  const std::string& fibonacciresult() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_fibonacciresult(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_fibonacciresult();
+  PROTOBUF_NODISCARD std::string* release_fibonacciresult();
+  void set_allocated_fibonacciresult(std::string* fibonacciresult);
   private:
-  int64_t _internal_fibonacciresult() const;
-  void _internal_set_fibonacciresult(int64_t value);
+  const std::string& _internal_fibonacciresult() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fibonacciresult(const std::string& value);
+  std::string* _internal_mutable_fibonacciresult();
   public:
 
   // @@protoc_insertion_point(class_scope:SimpleFibonacciReply)
@@ -349,7 +354,7 @@ class SimpleFibonacciReply final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    int64_t fibonacciresult_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr fibonacciresult_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -543,24 +548,54 @@ inline void SimpleFibonacciQuery::set_fibonacciquery(int32_t value) {
 
 // SimpleFibonacciReply
 
-// int64 fibonacciResult = 1;
+// string fibonacciResult = 1;
 inline void SimpleFibonacciReply::clear_fibonacciresult() {
-  _impl_.fibonacciresult_ = int64_t{0};
+  _impl_.fibonacciresult_.ClearToEmpty();
 }
-inline int64_t SimpleFibonacciReply::_internal_fibonacciresult() const {
-  return _impl_.fibonacciresult_;
-}
-inline int64_t SimpleFibonacciReply::fibonacciresult() const {
+inline const std::string& SimpleFibonacciReply::fibonacciresult() const {
   // @@protoc_insertion_point(field_get:SimpleFibonacciReply.fibonacciResult)
   return _internal_fibonacciresult();
 }
-inline void SimpleFibonacciReply::_internal_set_fibonacciresult(int64_t value) {
-  
-  _impl_.fibonacciresult_ = value;
-}
-inline void SimpleFibonacciReply::set_fibonacciresult(int64_t value) {
-  _internal_set_fibonacciresult(value);
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SimpleFibonacciReply::set_fibonacciresult(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.fibonacciresult_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:SimpleFibonacciReply.fibonacciResult)
+}
+inline std::string* SimpleFibonacciReply::mutable_fibonacciresult() {
+  std::string* _s = _internal_mutable_fibonacciresult();
+  // @@protoc_insertion_point(field_mutable:SimpleFibonacciReply.fibonacciResult)
+  return _s;
+}
+inline const std::string& SimpleFibonacciReply::_internal_fibonacciresult() const {
+  return _impl_.fibonacciresult_.Get();
+}
+inline void SimpleFibonacciReply::_internal_set_fibonacciresult(const std::string& value) {
+  
+  _impl_.fibonacciresult_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SimpleFibonacciReply::_internal_mutable_fibonacciresult() {
+  
+  return _impl_.fibonacciresult_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SimpleFibonacciReply::release_fibonacciresult() {
+  // @@protoc_insertion_point(field_release:SimpleFibonacciReply.fibonacciResult)
+  return _impl_.fibonacciresult_.Release();
+}
+inline void SimpleFibonacciReply::set_allocated_fibonacciresult(std::string* fibonacciresult) {
+  if (fibonacciresult != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.fibonacciresult_.SetAllocated(fibonacciresult, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.fibonacciresult_.IsDefault()) {
+    _impl_.fibonacciresult_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:SimpleFibonacciReply.fibonacciResult)
 }
 
 // -------------------------------------------------------------------
