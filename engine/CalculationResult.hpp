@@ -55,7 +55,9 @@ public:
 	}
 
 private:
+	int query = 0;
 	cpp_int fibonacciResult = 0;
+	cpp_int prevFibonacciResult = 0;
 	int count = 0;
 };
 
