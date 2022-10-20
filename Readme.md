@@ -4,15 +4,14 @@ This is a simple playground project for a job interview coding challenge. I am n
 
 # Running 
 
-After cloning repository, pre-cook cmake build folder with following command
-This command is going to take lots of time because I wanted to not package dependencies and used cmake fetch for all dependencies
+After cloning repository, pre-cook cmake build folder with following command cmake first build command is going to take lots of time because I wanted to not package dependencies and used cmake fetch for all dependencies.
 ```shell
   cmake -B cmake-build
   cmake --build cmake-build --target Fibonacci_Service -j 6
   cmake-build/Fibonacci_Service
 ```
 Use this to start local grpc server at 12024.
-  ```shell
+```shell
   cmake -B cmake-build
   cmake --build cmake-build --target Fibonacci_GRPC_Client -j 6
   cmake-build/Fibonacci_GRPC_Client

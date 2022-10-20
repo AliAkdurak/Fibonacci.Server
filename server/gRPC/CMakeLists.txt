@@ -46,11 +46,6 @@ message(STATUS "Protobuf Generated Include:${CMAKE_CURRENT_BINARY_DIR}")
 # Include generated *.pb.h files
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
-# Because I made each domain as a separate library header file includes gets a little bit hard for generated so
-# I am gonna configure cmake to copy files to generated folder.
-configure_file(${fibonacci_server_grpc_hdrs} ${CMAKE_CURRENT_SOURCE_DIR}/generated/ COPYONLY)
-configure_file(${fibonacci_server_proto_hdrs} ${CMAKE_CURRENT_SOURCE_DIR}/generated/ COPYONLY)
-
 # END OF GRPC/PROTOBUF STUFF
 
 # Creating library
