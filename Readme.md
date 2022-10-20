@@ -4,10 +4,7 @@ This is a simple playground project for a job interview coding challenge. I am n
 
 # Running 
 
-After cloning repository, pre-cook cmake build folder with following command 
-```shell    
-  cmake --build cmake-build
-```
+After cloning repository, pre-cook cmake build folder with following command
 This command is going to take lots of time because I wanted to not package dependencies and used cmake fetch for all dependencies
 ```shell
   cmake -B cmake-build
