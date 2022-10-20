@@ -19,45 +19,52 @@ namespace Fibonacci::Engine {
 class CalculationResult {
 public:
 
-	explicit CalculationResult(const string &calculationResultString) {
-		stringstream ss(calculationResultString);
+	explicit CalculationResult(const string &calculationResultString) : fibonacciResult(calculationResultString) {
 
-		ss >> this->fibonacciResult;
 	}
 
 	CalculationResult(const string &calculationResultString, int count) : CalculationResult(calculationResultString) {
 		this->count = count;
 	}
 
-	explicit CalculationResult(const cpp_int &calculationResult) {
-		cout << "Constructing new calculation result with:" << calculationResult << endl;
-		this->fibonacciResult = calculationResult;
+	explicit CalculationResult(cpp_int calculationResult)
+			: fibonacciResult(std::move(calculationResult)) {
 	}
 
 	CalculationResult(const cpp_int &calculationResult, int count) : CalculationResult(calculationResult) {
 		this->count = count;
 	}
 
-	cpp_int getFibonacciResult() const {
-		return fibonacciResult;
+	CalculationResult(int query, cpp_int prevFibonacciResult, cpp_int fibonacciResult, int count)
+			: query(query), prevFibonacciResult(std::move(prevFibonacciResult)), fibonacciResult(std::move(fibonacciResult)), count(count) {
+
 	}
 
-	void setFibonacciResult(cpp_int value) {
-		fibonacciResult = value;
+	CalculationResult(int query, const string &prevFibonacciResult, const string &fibonacciResult, int count)
+			: query(query), prevFibonacciResult(prevFibonacciResult), fibonacciResult(fibonacciResult), count(count) {
+
+	}
+
+	int getQuery() const {
+		return query;
+	}
+
+	const cpp_int &getPrevFibonacciResult() const {
+		return prevFibonacciResult;
+	}
+
+	const cpp_int &getFibonacciResult() const {
+		return fibonacciResult;
 	}
 
 	int getCount() const {
 		return count;
 	}
 
-	void setCount(int value) {
-		count = value;
-	}
-
 private:
-	int query = 0;
-	cpp_int fibonacciResult = 0;
-	cpp_int prevFibonacciResult = 0;
+	const int query = 0;
+	cpp_int fibonacciResult;
+	cpp_int prevFibonacciResult;
 	int count = 0;
 };
 

@@ -14,9 +14,9 @@ namespace Fibonacci::Engine::Store {
 optional<shared_ptr<CalculationResult>> SimpleHistoryStore::QueryPreviousCalculation(int fibonacciQuery) {
 	optional<shared_ptr<CalculationResult>> result;
 
-	for (auto historyStore: histories) {
+	for (const auto &historyStore: histories) {
 		if (historyStore.fibQuery == fibonacciQuery) {
-			result = std::make_shared<CalculationResult>(historyStore.fiboResult, historyStore.count);
+			result = std::make_shared<CalculationResult>(historyStore.fibQuery, historyStore.prevFiboResult, historyStore.fiboResult, historyStore.count);
 			break;
 		}
 	}
@@ -38,7 +38,8 @@ void SimpleHistoryStore::RecordCalculationResult(int fiboQueryNumber, shared_ptr
 	if (!isFound) {
 		HistoryStore newStore{
 				.fibQuery = fiboQueryNumber,
-				.fiboResult = calculationResult->getFibonacciResult().str()
+				.fiboResult = calculationResult->getFibonacciResult().str(),
+				.prevFiboResult = calculationResult->getPrevFibonacciResult().str()
 		};
 		//No sorting no organization plane old pushing it down.
 		histories.push_back(newStore);

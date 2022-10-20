@@ -11,7 +11,8 @@ namespace Fibonacci::Engine::Store {
 
 struct HistoryStore {
 	int fibQuery = 0;
-	string fiboResult = "";
+	string fiboResult;
+	string prevFiboResult;
 	int count = 0;
 };
 

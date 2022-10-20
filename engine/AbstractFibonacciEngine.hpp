@@ -36,7 +36,7 @@ protected:
 protected:
 	virtual optional<shared_ptr<CalculationResult>> PreProcessCalculationQuery(int number);
 	virtual shared_ptr<CalculationResult> ProcessCalculationQuery(int fibonacciNumber) = 0;
-	virtual void PostProcessCalculationQuery(int number, shared_ptr<CalculationResult> calculationResult);
+	virtual void PostProcessCalculationQuery(int number, const shared_ptr<CalculationResult> &calculationResult);
 
 };
 

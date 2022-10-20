@@ -42,7 +42,7 @@ optional<shared_ptr<CalculationResult>> AbstractFibonacciEngine::PreProcessCalcu
 	return previousCalcResult;
 }
 
-void AbstractFibonacciEngine::PostProcessCalculationQuery(int fiboQueryNumber, shared_ptr<CalculationResult> calculationResult) {
+void AbstractFibonacciEngine::PostProcessCalculationQuery(int fiboQueryNumber, const shared_ptr<CalculationResult> &calculationResult) {
 	historyStore->RecordCalculationResult(fiboQueryNumber, calculationResult);
 	statisticsStore->RecordCalculationResult(fiboQueryNumber, calculationResult);
 }

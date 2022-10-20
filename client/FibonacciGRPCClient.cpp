@@ -16,6 +16,9 @@ int main() {
 	client->PrintJsonResult(3);
 	client->PrintJsonResult(4);
 	client->PrintJsonResult(5);
+	client->PrintJsonResult(5);
+	client->PrintJsonResult(5);
+	client->PrintJsonResult(5);
 	client->PrintJsonResult(10);
 	client->PrintJsonResult(100);
 	client->PrintJsonResult(1000);
