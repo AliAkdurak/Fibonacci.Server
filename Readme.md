@@ -1,6 +1,26 @@
 # Fibonacci Server
 
-   This is a simple playground project for a job interview coding challenge. I am not adding the actual coding challenge because it might have a negative effect. This project is gonna be private after interview.
+This is a simple playground project for a job interview coding challenge. I am not adding the actual coding challenge because it might have a negative effect. This project is gonna be private after interview.
+
+# Running 
+
+After cloning repository, pre-cook cmake build folder with following command 
+```shell    
+  cmake --build cmake-build
+```
+This command is going to take lots of time because I wanted to not package dependencies and used cmake fetch for all dependencies
+```shell
+  cmake -B cmake-build
+  cmake --build cmake-build --target Fibonacci_Service -j 6
+  cmake-build/Fibonacci_Service
+```
+Use this to start local grpc server at 12024.
+  ```shell
+  cmake -B cmake-build
+  cmake --build cmake-build --target Fibonacci_GRPC_Client -j 6
+  cmake-build/Fibonacci_GRPC_Client
+```
+Use this command to run the client.
 
 ## Considerations
 
@@ -20,8 +40,10 @@
     - 
 ## Stretch Goals
 - Use as many of the libraries you can from the interview
-  - [x] boost::asio 
+  - [x] boost
   - [ ] Folley
+  - [ ] Google Test framework
+- Eye candies
   - [ ] Doxygen and UML
  
 ## Rationale for some library choices:
