@@ -10,9 +10,22 @@ int main() {
 
 	auto client = new FibonacciGRPCClient(grpc::CreateChannel("localhost:12024", grpc::InsecureChannelCredentials()));
 
-	auto result = client->QueryFibonacciNumber(20);
-
-	cout << "result: " << result << endl;
+	auto result = client->QueryFibonacciNumber(0);
+	cout << "result:0-> " << result << endl;
+	result = client->QueryFibonacciNumber(1);
+	cout << "result:1-> " << result << endl;
+	result = client->QueryFibonacciNumber(2);
+	cout << "result:2-> " << result << endl;
+	result = client->QueryFibonacciNumber(3);
+	cout << "result:3-> " << result << endl;
+	result = client->QueryFibonacciNumber(4);
+	cout << "result:4-> " << result << endl;
+	result = client->QueryFibonacciNumber(5);
+	cout << "result:5-> " << result << endl;
+	result = client->QueryFibonacciNumber(10);
+	cout << "result:10-> " << result << endl;
+	result = client->QueryFibonacciNumber(20);
+	cout << "result:20-> " << result << endl;
 
 	auto resultJson = client->QueryFibonacciNumberJson(30);
 

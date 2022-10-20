@@ -6,13 +6,19 @@
 #define FIBONACCI_SERVICE_IFIBONACCICALCULATIONQUERYLISTENER_HPP
 
 #include <cstdint>
+#include <memory>
+
+#include "../engine/CalculationResult.hpp"
+
+using namespace std;
+using namespace Fibonacci::Engine;
 
 namespace Fibonacci::Server {
 
 class IFibonacciCalculationQueryListener {
 
 public:
-	virtual int64_t HandleCalculationQuery(int fibonacciNumber) = 0;
+	virtual shared_ptr<CalculationResult> HandleCalculationQuery(int fibonacciNumber) = 0;
 
 };
 

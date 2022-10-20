@@ -7,7 +7,6 @@
 
 #include <vector>
 
-
 #include "../server/IFibonacciCalculationQueryListener.hpp"
 #include "IFibonacciEngineMonitoringSource.hpp"
 

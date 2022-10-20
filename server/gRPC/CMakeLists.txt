@@ -62,3 +62,4 @@ add_library(fibonacci.server.grpc STATIC
 			${fibonacci_server_proto_hdrs})
 
 target_link_libraries(fibonacci.server.grpc grpc++)
+target_link_libraries(fibonacci.server.grpc boost_json)

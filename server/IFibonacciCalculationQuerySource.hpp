@@ -35,13 +35,15 @@ public:
 		}
 	}
 
-	int64_t FireCalculationQueryReceived(int pQuery) {
+	shared_ptr<CalculationResult> FireCalculationQueryReceived(int pQuery) {
+		shared_ptr<CalculationResult> result;
+
 		//I am using standard observer observe template code but actually there is only going to be one listener.
 		for (auto queryListener: queryListeners) {
 			return queryListener->HandleCalculationQuery(pQuery);
 		}
 
-		return 0;
+		return result;
 	}
 
 };

@@ -6,6 +6,7 @@
 
 using namespace std;
 using namespace grpc;
+using namespace boost;
 
 namespace Fibonacci::Server::gRPC {
 
@@ -30,11 +31,11 @@ void gRPCServer::StartServing() {
 Status gRPCServer::Calculate(ServerContext *context, const SimpleFibonacciQuery *request, SimpleFibonacciReply *response) {
 	cout << "Calculate" << endl;
 
-	int64_t result = FireCalculationQueryReceived(request->fibonacciquery());
+	std::shared_ptr<CalculationResult> result = FireCalculationQueryReceived(request->fibonacciquery());
 
-	cout << "Result:" << result << endl;
+	cout << "Result:" << result->getFibonacciResult() << endl;
 
-	response->set_fibonacciresult(result);
+	response->set_fibonacciresult(result->getFibonacciResult());
 
 	return Status::OK;
 }
@@ -42,11 +43,17 @@ Status gRPCServer::Calculate(ServerContext *context, const SimpleFibonacciQuery 
 Status gRPCServer::CalculateReturnJsonString(::grpc::ServerContext *context, const ::SimpleFibonacciQuery *request, ::JsonFibonacciReply *response) {
 	cout << "Calculate and return json" << endl;
 
-	int64_t result = FireCalculationQueryReceived(request->fibonacciquery());
+	std::shared_ptr<CalculationResult> result = FireCalculationQueryReceived(request->fibonacciquery());
 
-	cout << "Result:" << result << endl;
+	cout << "Result:" << result->getFibonacciResult() << endl;
 
-	response->set_fibonaccijsonresult("Test");
+	json::object resultObject;
+	//Coding challenge show this as string, so I am casting it to a string.
+	resultObject["fib"] = to_string(result->getFibonacciResult());
+	resultObject["timestamp"] = std::time(nullptr);
+	resultObject["count"] = result->getCount();
+
+	response->set_fibonaccijsonresult(json::serialize(resultObject));
 
 	return Status::OK;
 }
