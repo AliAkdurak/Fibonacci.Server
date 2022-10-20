@@ -10,11 +10,15 @@ int main() {
 
 	auto client = new FibonacciGRPCClient(grpc::CreateChannel("localhost:12024", grpc::InsecureChannelCredentials()));
 
+	client->PrintJsonResult(9);
+	client->PrintJsonResult(7);
+	client->PrintJsonResult(8);
 	client->PrintJsonResult(0);
 	client->PrintJsonResult(1);
 	client->PrintJsonResult(2);
 	client->PrintJsonResult(3);
 	client->PrintJsonResult(4);
+	client->PrintJsonResult(5);
 	client->PrintJsonResult(5);
 	client->PrintJsonResult(5);
 	client->PrintJsonResult(5);
@@ -25,6 +29,8 @@ int main() {
 	client->PrintJsonResult(10000);
 	client->PrintJsonResult(100000);
 	client->PrintJsonResult(1000000);
+	client->PrintJsonResult(1000005);
+	client->PrintJsonResult(1000010);
 
 	return 0;
 }

@@ -31,6 +31,11 @@ public:
 			: fibonacciResult(std::move(calculationResult)) {
 	}
 
+	CalculationResult(cpp_int prevFibonacciResult, cpp_int calculationResult)
+			: prevFibonacciResult(std::move(prevFibonacciResult)), fibonacciResult(std::move(calculationResult)) {
+	}
+
+
 	CalculationResult(const cpp_int &calculationResult, int count) : CalculationResult(calculationResult) {
 		this->count = count;
 	}
@@ -64,8 +69,8 @@ public:
 private:
 	const int query = 0;
 	cpp_int fibonacciResult;
-	cpp_int prevFibonacciResult;
-	int count = 0;
+	cpp_int prevFibonacciResult = -1;
+	int count = 1;
 };
 
 }

@@ -13,7 +13,7 @@ struct HistoryStore {
 	int fibQuery = 0;
 	string fiboResult;
 	string prevFiboResult;
-	int count = 0;
+	int count = 1;
 };
 
 }

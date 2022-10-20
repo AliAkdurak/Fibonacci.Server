@@ -22,7 +22,7 @@ class SimpleHistoryStore : public IFiboQueryHistoryStore {
 public:
 	optional<shared_ptr<CalculationResult>> QueryPreviousCalculation(int fibonacciQuery) override;
 	void RecordCalculationResult(int fiboQueryNumber, shared_ptr<CalculationResult> calculationResult) override;
-
+	optional<shared_ptr<CalculationResult>> QueryClosestCalculation(int fiboQuery) override;
 private:
 	vector<HistoryStore> histories;
 

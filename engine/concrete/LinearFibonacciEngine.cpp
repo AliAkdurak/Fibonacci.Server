@@ -20,22 +20,30 @@ void LinearFibonacciEngine::StartEngine() {
 }
 
 shared_ptr<CalculationResult> LinearFibonacciEngine::ProcessCalculationQuery(int fibonacciNumber) {
-	//linear time :)
-	cpp_int result = 0;
-	cpp_int currentAdditive = 1;
-	cpp_int prevAdditive = 0;
+	optional<shared_ptr<CalculationResult>> closestCalculationResult = this->historyStore->QueryClosestCalculation(fibonacciNumber);
 
-	for (int i = 0; i <= fibonacciNumber; i++) {
-		if (i <= 1) {
-			result = i;
-		} else {
-			result = prevAdditive + currentAdditive;
-			prevAdditive = currentAdditive;
-			currentAdditive = result;
-		}
+	cpp_int result = 0, prevAdditive = 0, currentAdditive = 1;
+	int i = 2, calculateTimes = fibonacciNumber;
+
+	if (fibonacciNumber < 2)
+		return make_shared<CalculationResult>(cpp_int(0), cpp_int(fibonacciNumber));
+
+	if (closestCalculationResult.has_value()) {
+		cout << "Calculation cheated with closest previous query: " << closestCalculationResult.value()->getQuery() << endl;
+		prevAdditive = closestCalculationResult.value()->getPrevFibonacciResult();
+		currentAdditive = closestCalculationResult.value()->getFibonacciResult();
+		calculateTimes = fibonacciNumber - closestCalculationResult.value()->getQuery() - 1;
+		i = 0;
+		//cout << "Prev: " << prevAdditive << " Current: " << currentAdditive << " Times: " << calculateTimes << endl;
 	}
 
-	return make_shared<CalculationResult>(result);
+	for (; i <= calculateTimes; i++) {
+		result = prevAdditive + currentAdditive;
+		prevAdditive = currentAdditive;
+		currentAdditive = result;
+	}
+
+	return make_shared<CalculationResult>(prevAdditive, result);
 }
 
 }

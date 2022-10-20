@@ -13,7 +13,7 @@ void StopwatchMonitor::HandleCalculationQueryReceivedEvent() {
 }
 
 void StopwatchMonitor::HandleStartingCalculationEvent() {
-	calculationAutoTimer = new auto_cpu_timer(simpleStopwatchMonitorOutputStream, "Calculation took:%t sec CPU, %w sec real");
+	calculationAutoTimer = new auto_cpu_timer(simpleStopwatchMonitorOutputStream, "|Calculation took:%t sec CPU, %w sec real");
 }
 
 void StopwatchMonitor::HandleFinishedCalculationEvent() {
@@ -25,12 +25,13 @@ void StopwatchMonitor::HandleRecoveredCalculationEvent() {
 }
 
 void StopwatchMonitor::HandleCalculationQueryCompletedEvent() {
-	delete wholeQueryAutoTimer;
-	simpleStopwatchMonitorOutputStream << endl;
 	if (calculationAutoTimer != nullptr) {
 		delete calculationAutoTimer;
 		calculationAutoTimer = nullptr;
 	}
+
+	delete wholeQueryAutoTimer;
+
 	simpleStopwatchMonitorOutputStream << endl;
 	cout << simpleStopwatchMonitorOutputStream.str();
 	simpleStopwatchMonitorOutputStream.clear();

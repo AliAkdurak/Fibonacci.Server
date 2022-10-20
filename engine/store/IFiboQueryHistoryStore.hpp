@@ -16,6 +16,7 @@ class IFiboQueryHistoryStore {
 
 public:
 	virtual optional<shared_ptr<CalculationResult>> QueryPreviousCalculation(int fibonacciQuery) = 0;
+	virtual optional<shared_ptr<CalculationResult>> QueryClosestCalculation(int fiboQuery) = 0;
 	virtual void RecordCalculationResult(int fiboQueryNumber, shared_ptr<CalculationResult> calculationResult) = 0;
 };
 
