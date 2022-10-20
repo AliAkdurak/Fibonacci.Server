@@ -27,8 +27,11 @@ public:
 	string QueryFibonacciNumber(int fibonacciNumber);
 	string QueryFibonacciNumberJson(int fibonacciNumber);
 
+	void PrintJsonResult(int fiboQuery);
 private:
 	std::unique_ptr<FibonacciCalculator::Stub> clientStub;
+
+
 
 };
 

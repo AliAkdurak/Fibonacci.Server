@@ -29,7 +29,7 @@ void gRPCServer::StartServing() {
 }
 
 Status gRPCServer::Calculate(ServerContext *context, const SimpleFibonacciQuery *request, SimpleFibonacciReply *response) {
-	cout << "Calculate:" << request->fibonacciquery() << endl;
+	cout << "Calculate: f(" << request->fibonacciquery() << ")" << endl;
 
 	std::shared_ptr<CalculationResult> result = FireCalculationQueryReceived(request->fibonacciquery());
 
@@ -39,11 +39,9 @@ Status gRPCServer::Calculate(ServerContext *context, const SimpleFibonacciQuery 
 }
 
 Status gRPCServer::CalculateReturnJsonString(::grpc::ServerContext *context, const ::SimpleFibonacciQuery *request, ::JsonFibonacciReply *response) {
-	cout << "Calculate and return json" << endl;
+	cout << "Calculate: f(" << request->fibonacciquery() << ")" << endl;
 
 	std::shared_ptr<CalculationResult> result = FireCalculationQueryReceived(request->fibonacciquery());
-
-	cout << "Result:" << result->getFibonacciResult() << endl;
 
 	json::object resultObject;
 	//Coding challenge show this as string, so I am casting it to a string.
