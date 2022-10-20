@@ -5,11 +5,11 @@
 #ifndef FIBONACCI_SERVER_THREADPOOLFIBONACCIENGINE_HPP
 #define FIBONACCI_SERVER_THREADPOOLFIBONACCIENGINE_HPP
 
-#include "../IFibonacciEngine.hpp"
+#include "../AbstractFibonacciEngine.hpp"
 
 namespace Fibonacci::Engine {
 
-class ThreadPoolFibonacciEngine : public IFibonacciEngine {
+class ThreadPoolFibonacciEngine : public AbstractFibonacciEngine {
 
 
 

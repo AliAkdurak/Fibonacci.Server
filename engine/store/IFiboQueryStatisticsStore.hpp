@@ -5,7 +5,13 @@
 #ifndef FIBONACCI_SERVICE_IFIBOQUERYSTATISTICHOLDER_HPP
 #define FIBONACCI_SERVICE_IFIBOQUERYSTATISTICHOLDER_HPP
 
-namespace Fibonacci::Engine::
+namespace Fibonacci::Engine::Store {
 
+class IFiboQueryStatisticsStore {
+
+
+};
+
+}
 
 #endif //FIBONACCI_SERVICE_IFIBOQUERYSTATISTICHOLDER_HPP

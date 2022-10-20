@@ -14,7 +14,7 @@ void AbstractFibonacciServiceBuilder::BuildServices() {
 	fiboServers = BuildFibonacciServers();
 }
 
-IFibonacciEngine *AbstractFibonacciServiceBuilder::getFiboEngine() const {
+AbstractFibonacciEngine *AbstractFibonacciServiceBuilder::getFiboEngine() const {
 	return fiboEngine;
 }
 

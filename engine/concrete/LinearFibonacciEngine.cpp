@@ -5,12 +5,18 @@
 
 namespace Fibonacci::Engine {
 
+//Shared pointers should be copied(pass by value) normally for constructor case we can pass by ref for injecting
+LinearFibonacciEngine::LinearFibonacciEngine(const shared_ptr<IFiboQueryHistoryStore> &historyStore,
+											 const shared_ptr<IFiboQueryStatisticsStore> &statisticsStore) : AbstractFibonacciEngine(historyStore, statisticsStore) {
+
+}
+
 void LinearFibonacciEngine::StartEngine() {
 	//There is nothing to do here which kind a violates SOLID's Interface segregation but I don't wanna make another interface
 	//for non threaded fibonacci engines
 }
 
-shared_ptr<CalculationResult> LinearFibonacciEngine::HandleCalculationQuery(int fibonacciNumber) {
+shared_ptr<CalculationResult> LinearFibonacciEngine::ProcessCalculationQuery(int fibonacciNumber) {
 	//linear time :)
 	int64_t result = 0;
 	int64_t currentAdditive = 1;

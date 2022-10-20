@@ -8,15 +8,17 @@
 #include <iostream> // For std::cout
 #include <memory> // For std::shared_ptr, std::make_shared
 
-#include "../IFibonacciEngine.hpp"
+#include "../AbstractFibonacciEngine.hpp"
 
 using namespace std;
 
 namespace Fibonacci::Engine {
 
-class LinearFibonacciEngine : public IFibonacciEngine {
+class LinearFibonacciEngine : public AbstractFibonacciEngine {
 public:
-	shared_ptr<CalculationResult> HandleCalculationQuery(int fibonacciNumber) override;
+	LinearFibonacciEngine(const shared_ptr<IFiboQueryHistoryStore> &historyStore, const shared_ptr<IFiboQueryStatisticsStore> &statisticsStore);
+
+	shared_ptr<CalculationResult> ProcessCalculationQuery(int fibonacciNumber) override;
 public:
 	void StartEngine() override;
 

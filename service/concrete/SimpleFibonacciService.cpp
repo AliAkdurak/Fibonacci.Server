@@ -5,12 +5,19 @@
 #include "SimpleFibonacciService.hpp"
 
 using namespace Fibonacci::Engine;
+using namespace Fibonacci::Engine::Store;
 using namespace Fibonacci::Server::gRPC;
+
 
 namespace Fibonacci::Service {
 
-IFibonacciEngine *SimpleFibonacciService::BuildFibonacciEngine() {
-	return new LinearFibonacciEngine();
+AbstractFibonacciEngine *SimpleFibonacciService::BuildFibonacciEngine() {
+	shared_ptr<IFiboQueryHistoryStore> historyStore = make_shared<SimpleHistoryStore>();
+	shared_ptr<IFiboQueryStatisticsStore> statisticsStore = make_shared<SimpleStatisticsStore>();
+
+	AbstractFibonacciEngine *newEngine = new LinearFibonacciEngine(historyStore, statisticsStore);
+
+	return newEngine;
 }
 
 vector<IFibonacciServer *> *SimpleFibonacciService::BuildFibonacciServers() {

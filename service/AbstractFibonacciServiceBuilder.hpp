@@ -10,7 +10,7 @@
 #include "boost/thread.hpp"
 
 #include "../server/IFibonacciServer.hpp"
-#include "../engine/IFibonacciEngine.hpp"
+#include "../engine/AbstractFibonacciEngine.hpp"
 #include "../monitor/IFibonacciEngineMonitor.hpp"
 
 using namespace Fibonacci::Engine;
@@ -31,18 +31,18 @@ public:
 	virtual void BuildServices();
 
 	//TODO Read about no discard I understand what it does as in it gives a warning if someone calls this function and doesn't used returned variable. But I dont understand why clang complains and wants me to add it.
-	[[nodiscard]] IFibonacciEngine *getFiboEngine() const;
+	[[nodiscard]] AbstractFibonacciEngine *getFiboEngine() const;
 	[[nodiscard]] vector<IFibonacciServer *> *getFiboServers() const;
 	[[nodiscard]] IFibonacciEngineMonitor *getFiboEngineMonitor() const;
 protected:
 	//TODO Maybe make these optional later for creation from json and error handling.
 	virtual vector<IFibonacciServer *> *BuildFibonacciServers() = 0;
-	virtual IFibonacciEngine *BuildFibonacciEngine() = 0;
+	virtual AbstractFibonacciEngine *BuildFibonacciEngine() = 0;
 	virtual IFibonacciEngineMonitor *BuildFibonacciEngineMonitor() = 0;
 
 private:
 	vector<IFibonacciServer *> *fiboServers{};
-	IFibonacciEngine *fiboEngine{};
+	AbstractFibonacciEngine *fiboEngine{};
 	IFibonacciEngineMonitor *fiboEngineMonitor{};
 };
 

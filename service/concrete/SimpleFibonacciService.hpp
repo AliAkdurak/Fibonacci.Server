@@ -10,6 +10,8 @@
 #include "../../server/gRPC/gRPCServer.hpp"
 #include "../../engine/concrete/LinearFibonacciEngine.hpp"
 #include "../../engine/concrete/ThreadPoolFibonacciEngine.hpp"
+#include "../../engine/store/concrete/SimpleHistoryStore.hpp"
+#include "../../engine/store/concrete/SimpleStatisticsStore.hpp"
 #include "../../monitor/concrete/StopwatchMonitor.hpp"
 
 using namespace std;
@@ -23,7 +25,7 @@ public:
 protected:
 	vector<IFibonacciServer *> *BuildFibonacciServers() override;
 	IFibonacciEngineMonitor *BuildFibonacciEngineMonitor() override;
-	IFibonacciEngine *BuildFibonacciEngine() override;
+	AbstractFibonacciEngine *BuildFibonacciEngine() override;
 };
 
 }//Fibonacci::Service

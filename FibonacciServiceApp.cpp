@@ -65,7 +65,7 @@ void FibonacciServiceApp::SetupServices() {
 }
 
 void FibonacciServiceApp::RunServices() {
-	engineThread = new boost::thread(&IFibonacciEngine::StartEngine, fiboEngine);
+	engineThread = new boost::thread(&AbstractFibonacciEngine::StartEngine, fiboEngine);
 	monitoringLoopThread = new boost::thread(&FibonacciServiceApp::MonitorLoop, this);
 
 	for (auto fiboServer: *fiboServers) {

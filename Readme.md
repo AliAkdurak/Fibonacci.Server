@@ -14,14 +14,15 @@
     - Get the cache system injected so that we can use different ones? Could it be seperated?
   - Monitoring performance
     - Should have performance metrics counted. I don't know a C++ library for that. Will start with simple stopwatch. Checkout libraries if time permits.
-    - Logging visibility ? 
+    - Logging visibility ? Logging library ??
   - Fantasies
     - Make it microservice!
     - 
 ## Stretch Goals
 - Use as many of the libraries you can from the interview
   - [x] boost::asio 
-  - [ ] Folley 
+  - [ ] Folley
+  - [ ] Doxygen and UML
  
 ## Rationale for some library choices:
 

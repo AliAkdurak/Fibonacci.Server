@@ -44,7 +44,7 @@ private:
 
 private:
 	vector<IFibonacciServer *> *fiboServers{};
-	IFibonacciEngine *fiboEngine{};
+	AbstractFibonacciEngine *fiboEngine{};
 	IFibonacciEngineMonitor *fiboEngineMonitor{};
 };
 
